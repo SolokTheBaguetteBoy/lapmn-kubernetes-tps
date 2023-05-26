@@ -9,7 +9,7 @@ metadata:
     io.kompose.service: app
   name: app
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       io.kompose.service: app
@@ -53,15 +53,19 @@ spec:
             - containerPort: 80
           resources: {}
           volumeMounts:
-            - mountPath: /tp5test
+            - mountPath: /tp5test-shared
               name: demo-volume
             # - mountPath: /var/www/html
             #  name: nextcloud-data
       restartPolicy: Always
       volumes:
        - name: demo-volume
-         configMap:
-           name: config-volume
+         nfs:
+           server: 192.168.254.254
+           path: /var/lib/nfsdata
+           readOnly: false
+       #  configMap:
+       #    name: config-volume
        # - name: nextcloud-data
        #   persistentVolumeClaim:
             # claimName: nextcloud-data
