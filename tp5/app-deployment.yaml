@@ -53,11 +53,16 @@ spec:
             - containerPort: 80
           resources: {}
           volumeMounts:
-            - mountPath: /var/www/html
-              name: nextcloud-data
+            - mountPath: /tp5test
+              name: demo-volume
+            # - mountPath: /var/www/html
+            #  name: nextcloud-data
       restartPolicy: Always
       volumes:
-        - name: nextcloud-data
-          persistentVolumeClaim:
-            claimName: nextcloud-data
+       - name: demo-volume
+         configMap:
+           name: config-volume
+       # - name: nextcloud-data
+       #   persistentVolumeClaim:
+            # claimName: nextcloud-data
 status: {}

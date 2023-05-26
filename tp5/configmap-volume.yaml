@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  config-file.txt: |
+    Test config file idk
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: config-volume
